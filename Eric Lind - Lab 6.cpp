@@ -33,24 +33,31 @@ int main()
   return 0;
 }
 
-//Generic sort function
+//Generic binary sort function, assumes the array is sorted in ascending order
 template <typename T>
 int binarySearch(const T list[], T key, int listSize)
 {
+  // Initialize low and high indexes for search
   int low = 0;
   int high = listSize - 1;
 
+  // Continue search until search range is valid.
   while (high >= low)
   {
+    // Calculate the middle index for the current range
     int mid = (low + high) / 2;
+
+    // Check if the key is in the left or right half of the current search range.
     if (key < list[mid])
       high = mid - 1;
     else if (key == list[mid])
+      // Key found at the middle index.
       return mid;
     else
       low = mid + 1;
   }
 
+  // Key not found.
   return -low - 1;
 }
 
